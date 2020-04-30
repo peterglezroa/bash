@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Compiling kotlin, please wait...."
+kotlinc $1 -include-runtime -d out.jar
+java -jar out.jar
+rm out.jar

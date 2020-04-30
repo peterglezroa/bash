@@ -1,0 +1,36 @@
+#!/bin/bash
+#CHECK FOR FLAG - DEFAULT --status
+test=`echo $1 | egrep '\--'`
+if test $? -ne 0
+  then
+	  flag="status"
+  else
+	  flag=`echo $1 | cut -f3 -d-`
+  shift 1
+fi
+# FLAGS
+echo $flag
+case $flag in
+	status)
+    xrandr --query | grep " connected"
+	;;
+	list)
+		xrandr --query | grep " connected" | cut -d' ' -f1
+	;;	
+  active)
+    xrandr --listactivemonitors
+  ;;
+  hdmi_start)
+    xrandr --output HDMI-1 --auto --left-of eDP-1
+  ;;
+  hdmi_off)
+    xrandr --ouput HDMI-1 --off
+  ;;
+  toggle)
+    if [ `xrandr --listactivemonitors | wc -l` -lt 3 ] #un monitor
+    then
+      xrandr --output HDMI-1 --auto --left-of eDP-1
+    else
+      xrandr --output HDMI-1 --off
+    fi
+esac

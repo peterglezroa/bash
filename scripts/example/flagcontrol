@@ -1,0 +1,27 @@
+#!/bin/bash
+if test $# -gt 0
+then
+	#CHECK FOR FLAG - DEFAULT = -f
+	test=`echo $1 | egrep '\-'`
+	if test $? -ne 0
+	then
+		flag="f"
+	else
+		flag=`echo $1 | cut -f2 -d-`
+	shift 1
+	fi
+	for fchar in `echo $flag | grep -o .`
+	do
+		case $fchar in
+			f)
+				
+				cat ~/scripts/files/vimcheatsheet.txt | egrep $1 
+			;;
+			a)
+				echo "add"
+			;;	
+		esac
+	done
+else
+	echo "The script cdproject needs more than one argument"
+fi

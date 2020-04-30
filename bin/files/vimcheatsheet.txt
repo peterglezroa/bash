@@ -1,0 +1,5 @@
+ctrl+n|autocompletar con palabras del mismo archivo
+v|modo view, usar y para copiar y p para pegar
+shift+<algo>|afecta la linea completa
+/<patron>|buscar patrón en el archivo
+:wq|Guardar y salir del archivo
